@@ -13,29 +13,33 @@ import pam.pjwstk.pl.productmarks.Model.Product;
  */
 
 public class ProductLab {
-    private static ProductLab sProductLab;
+    public static ProductLab sProductLab;
 
     private List<Product> mProducts;
 
     public static ProductLab get(Context context){
         if (sProductLab == null){
-            sProductLab = new ProductLab();
+            sProductLab = new ProductLab(context);
         }
         return sProductLab;
     }
 
-    private ProductLab(Context context){
+    public ProductLab(Context context){
         mProducts = new ArrayList<>();
         for(int i = 0; i < 100 ; i++){
             Product product = new Product();
-            product.setName("Product 1" + i );
-            product.setDesc("Product " + i + " is awesome!");
-            product.setMark(5);
+            product.setName("Produkt " + i );
+            product.setDesc("Produkt " + i + " is awesome!");
+            if(i%2 == 0) {
+                product.setMark("Polecam");
+            }else {
+                product.setMark("Nie polecam");
+            }
             mProducts.add(product);
         }
     }
 
-    private List<Product> getProducts(){
+    public List<Product> getProducts(){
         return mProducts;
     }
 

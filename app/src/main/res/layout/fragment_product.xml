@@ -17,11 +17,18 @@
             android:layout_height="wrap_content"
             android:hint="@string/add_product_hint"/>
 
-        <TextView
-            style="?android:listSeparatorTextViewStyle"
+        <EditText
+            android:id="@+id/product_desc"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:text="@string/add_product_description"/>
+            android:hint="@string/add_product_description"/>
+
+       <Spinner
+           android:id="@+id/marks_spinner"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:spinnerMode="dropdown"/>
 
         <Button
             android:id="@+id/add_button"

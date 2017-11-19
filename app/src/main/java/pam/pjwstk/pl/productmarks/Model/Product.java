@@ -11,7 +11,7 @@ public class Product {
 
     private UUID mId;
     private String mName;
-    private double mMark;
+    private String mMark;
     private String mDesc;
 
     public Product(){
@@ -35,11 +35,11 @@ public class Product {
         mName = name;
     }
 
-    public double getMark() {
+    public String getMark() {
         return mMark;
     }
 
-    public void setMark(double mark) {
+    public void setMark(String mark) {
         mMark = mark;
     }
 

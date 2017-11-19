@@ -5,11 +5,21 @@
     <string name="password_hint">Hasło</string>
     <string name="login_button_text">Zaloguj</string>
     <string name="title_activity_login123">Sign in</string>
+
+    <!--Strings related to add product-->
     <string name="search_hint">Znajdź produkt</string>
     <string name="product_name_label">Twoje produkty</string>
     <string name="add_product_hint">Wpisz nazwę produktu</string>
     <string name="add_product_description">Opinia</string>
     <string name="add_product_button">Dodaj produkt</string>
+    <string name="marks_none">Brak oceny</string>
+    <!--Array relateed to product marks-->
+    <string-array name="marks_array">
+        <item>Polecam</item>
+        <item>Nie polecam</item>
+    </string-array>
+
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
