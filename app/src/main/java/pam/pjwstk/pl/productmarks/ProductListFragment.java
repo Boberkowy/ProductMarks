@@ -1,5 +1,6 @@
 package pam.pjwstk.pl.productmarks;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -25,7 +25,6 @@ public class ProductListFragment extends Fragment {
     private TextView mMarkTextView;
 
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_product_list, container, false);
@@ -37,11 +36,22 @@ public class ProductListFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
     private void updateUI() {
         ProductLab productLab = ProductLab.get(getActivity());
         List<Product> products = productLab.getProducts();
-        mAdapter = new ProductAdapter(products);
-        mProductRecyclerView.setAdapter(mAdapter);
+
+        if(mAdapter == null){
+            mAdapter = new ProductAdapter(products);
+            mProductRecyclerView.setAdapter(mAdapter);
+        }else {
+            mAdapter.notifyDataSetChanged();
+        }
     }
         private class ProductHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
             private Product mProduct;
@@ -61,7 +71,8 @@ public class ProductListFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),mProduct.getName() + " clicked!", Toast.LENGTH_SHORT).show();
+                Intent intent = ProductActivity.newIntent(getActivity(),mProduct.getId());
+                startActivity(intent);
             }
         }
 

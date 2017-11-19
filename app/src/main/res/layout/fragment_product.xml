@@ -1,43 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:layout_margin="16dp">
+              android:layout_height="match_parent">
+
+
 
         <TextView
-            style="?android:listSeparatorTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/product_name_label"/>
-
-        <EditText
             android:id="@+id/product_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/add_product_hint"/>
+            android:textSize="23sp"
+            android:textStyle="bold"
+            tools:text="Nazwa produktu"/>
 
-        <EditText
+        <TextView
+            android:id="@+id/product_mark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/product_mark"
+            tools:text="Czy polecam"
+            android:textSize="18sp"/>
+
+
+        <TextView
             android:id="@+id/product_desc"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
-            android:hint="@string/add_product_description"/>
+            android:textSize="18sp"
+            tools:text="Opinia"/>
 
-       <Spinner
-           android:id="@+id/marks_spinner"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:spinnerMode="dropdown"/>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="bottom">
 
         <Button
-            android:id="@+id/add_button"
-            android:layout_width="match_parent"
+            android:id="@+id/edit_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_product_button"/>
+            android:layout_weight="1"
+            android:text="@string/edit_button"/>
 
+        <Button
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/delete_button"/>
 
-
-
-
+    </LinearLayout>
 </LinearLayout>

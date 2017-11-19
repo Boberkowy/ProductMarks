@@ -1,112 +1,70 @@
 package pam.pjwstk.pl.productmarks;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.UUID;
 
 import pam.pjwstk.pl.productmarks.Model.Product;
 
-public class ProductFragment extends Fragment {
+
+public class ProductFragment extends Fragment{
+
+    private static final String ARG_PRODUCT_ID = "product_id";
 
     private Product mProduct;
-    private EditText mTitleField;
-    private EditText mDesc;
-    private RadioGroup mRadioGroup;
-    private RadioButton mRadioButton;
-    private Button mButton;
+    private TextView mName;
+    private TextView mMark;
+    private TextView mDesc;
+
+    public static ProductFragment newInstance (UUID productId){
+        Bundle args = new Bundle();
+
+        args.putSerializable(ARG_PRODUCT_ID,productId);
+
+        ProductFragment fragment = new ProductFragment();
+        fragment.setArguments(args);
+
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mProduct = new Product();
+
+        UUID productId = (UUID) getArguments()
+                        .getSerializable(ARG_PRODUCT_ID);
+        mProduct = ProductLab.get(getActivity()).getProduct(productId);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_product, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_product,container,false);
 
-        createTitleField(v);
-        createDescField(v);
-        createMarkSpinner(v);
+        getNameText(v);
+        getMarkText(v);
+        getDescText(v);
+
         return v;
     }
 
-
-    private void createTitleField(View v) {
-
-        mTitleField = (EditText) v.findViewById(R.id.product_title);
-        mTitleField.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // nothing
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mProduct.setName(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                // nothing
-            }
-        });
+    private void getNameText(View v){
+        mName = (TextView) v.findViewById(R.id.product_title);
+        mName.setText(mProduct.getName());
     }
 
-    private void createDescField(View v) {
-
-        mDesc = (EditText) v.findViewById(R.id.product_desc);
-        mDesc.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // nothing
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mProduct.setDesc(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //nothing
-            }
-        });
+    private void getMarkText(View v){
+        mMark = (TextView) v.findViewById(R.id.product_mark);
+        mMark.setText(mProduct.getMark());
     }
 
-    private void createMarkSpinner(View v) {
-        final Spinner spinner = (Spinner) v.findViewById(R.id.marks_spinner);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext() ,R.array.marks_array, android.R.layout.simple_spinner_item);
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
-                    case 0:
-                        mProduct.setMark(spinner.getSelectedItem().toString());
-                        break;
-                    case 1:
-                        mProduct.setMark(spinner.getSelectedItem().toString());
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                mProduct.setMark(getString(R.string.marks_none));
-            }
-        });
+    private void getDescText (View v){
+        mDesc = (TextView) v.findViewById(R.id.product_desc);
+        mDesc.setText(mProduct.getDesc());
     }
 }
