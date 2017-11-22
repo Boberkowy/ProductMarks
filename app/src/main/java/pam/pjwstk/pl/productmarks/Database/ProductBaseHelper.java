@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static pam.pjwstk.pl.productmarks.Database.ProductMarksDbSchema.ProductTable.Cols;
-import static pam.pjwstk.pl.productmarks.Database.ProductMarksDbSchema.ProductTable.NAME;
+import static pam.pjwstk.pl.productmarks.Database.ProductDbSchema.ProductTable.Cols;
+import static pam.pjwstk.pl.productmarks.Database.ProductDbSchema.ProductTable.NAME;
 
 /**
  * Created by Boberkowy on 04.11.2017.
