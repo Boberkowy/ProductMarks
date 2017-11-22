@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="@string/add_product_label"/>
+            android:text="@string/edit_product_label"/>
 
         <EditText
             android:id="@+id/product_title"
@@ -32,13 +32,9 @@
            android:spinnerMode="dropdown"/>
 
         <Button
-            android:id="@+id/add_button"
+            android:id="@+id/edit_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add_product_button"/>
-
-
-
-
+            android:text="@string/edit_product_button"/>
 
 </LinearLayout>

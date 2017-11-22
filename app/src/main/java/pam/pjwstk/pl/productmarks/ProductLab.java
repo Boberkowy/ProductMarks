@@ -23,20 +23,16 @@ public class ProductLab {
         }
         return sProductLab;
     }
+    public void addProduct(Product product) {
+        mProducts.add(product);
+    }
 
+    public void deleteProduct(Product product){
+        mProducts.remove(product);
+    }
     public ProductLab(Context context){
         mProducts = new ArrayList<>();
-        for(int i = 0; i < 100 ; i++){
-            Product product = new Product();
-            product.setName("Produkt " + i );
-            product.setDesc("Produkt " + i + " is awesome!");
-            if(i%2 == 0) {
-                product.setMark("Polecam");
-            }else {
-                product.setMark("Nie polecam");
-            }
-            mProducts.add(product);
-        }
+
     }
 
     public List<Product> getProducts(){

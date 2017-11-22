@@ -1,11 +1,13 @@
 package pam.pjwstk.pl.productmarks;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.UUID;
@@ -21,6 +23,8 @@ public class ProductFragment extends Fragment{
     private TextView mName;
     private TextView mMark;
     private TextView mDesc;
+    private Button mEditButton;
+    private Button mDeleteButton;
 
     public static ProductFragment newInstance (UUID productId){
         Bundle args = new Bundle();
@@ -49,7 +53,8 @@ public class ProductFragment extends Fragment{
         getNameText(v);
         getMarkText(v);
         getDescText(v);
-
+        editButtonHandler(v);
+        deleteButtonHandler(v);
         return v;
     }
 
@@ -66,5 +71,30 @@ public class ProductFragment extends Fragment{
     private void getDescText (View v){
         mDesc = (TextView) v.findViewById(R.id.product_desc);
         mDesc.setText(mProduct.getDesc());
+    }
+
+    private void editButtonHandler(View v){
+        mEditButton = (Button) v.findViewById(R.id.edit_button);
+
+        mEditButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = EditProductActivity.newIntent(getActivity(),mProduct.getId());
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void deleteButtonHandler(View v){
+        mDeleteButton = (Button) v.findViewById(R.id.delete_button);
+
+        mDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProductLab.get(getActivity()).deleteProduct(mProduct);
+                getActivity().finish();
+            }
+        });
     }
 }

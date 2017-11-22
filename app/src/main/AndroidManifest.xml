@@ -24,6 +24,7 @@
 
         <activity android:name=".EditProductActivity"/>
         <activity android:name=".ProductActivity"/>
+        <activity android:name=".AddProductActivity"/>
     </application>
 
 </manifest>
