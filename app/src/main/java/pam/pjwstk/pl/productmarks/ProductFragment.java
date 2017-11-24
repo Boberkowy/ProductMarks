@@ -82,6 +82,8 @@ public class ProductFragment extends Fragment{
 
                 Intent intent = EditProductActivity.newIntent(getActivity(),mProduct.getId());
                 startActivity(intent);
+                getActivity().finish();
+
             }
         });
     }

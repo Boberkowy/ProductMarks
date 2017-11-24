@@ -62,7 +62,6 @@ public class ProductListFragment extends Fragment {
             case R.id.new_product:
                 Product product = new Product();
 
-                ProductLab.get(getActivity()).addProduct(product);
                 Intent intent = AddProductActivity.newIntent(getActivity(), product.getId());
                 startActivity(intent);
                 return true;
@@ -79,6 +78,7 @@ public class ProductListFragment extends Fragment {
             mAdapter = new ProductAdapter(products);
             mProductRecyclerView.setAdapter(mAdapter);
         }else {
+            mAdapter.setProducts(products);
             mAdapter.notifyDataSetChanged();
         }
     }
@@ -129,6 +129,11 @@ public class ProductListFragment extends Fragment {
         @Override
         public int getItemCount() {
             return mProducts.size();
+        }
+
+
+        public void setProducts(List<Product> products){
+            mProducts = products;
         }
     }
 }

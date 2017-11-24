@@ -50,7 +50,7 @@ public class EditProductFragment extends Fragment {
         createTitleField(v);
         createDescField(v);
         createMarkSpinner(v);
-        createAddButton(v);
+        createEditButton(v);
         return v;
     }
 
@@ -129,13 +129,13 @@ public class EditProductFragment extends Fragment {
             }
         });
     }
-    private void createAddButton(View v){
+    private void createEditButton(View v){
         mEditButton = (Button) v.findViewById(R.id.edit_button);
 
         mEditButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ProductLab.get(getActivity()).updateProduct(mProduct);
                 getActivity().finish();
             }
         });

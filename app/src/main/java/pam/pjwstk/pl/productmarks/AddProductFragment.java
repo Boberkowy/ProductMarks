@@ -40,9 +40,7 @@ public class AddProductFragment extends Fragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        UUID productId = (UUID) getArguments().getSerializable(ARG_PRODUCT_ID);
-        mProduct = ProductLab.get(getActivity()).getProduct(productId);
+        mProduct = new Product();
     }
 
     @Override
@@ -54,6 +52,11 @@ public class AddProductFragment extends Fragment{
         createMarkSpinner(v);
         createAddButton(v);
         return v;
+    }
+
+    @Override public void onPause() {
+        super.onPause();
+        ProductLab.get(getActivity()).updateProduct(mProduct);
     }
     private void createMarkSpinner(View v) {
         final Spinner spinner = (Spinner) v.findViewById(R.id.marks_spinner);
@@ -86,7 +89,7 @@ public class AddProductFragment extends Fragment{
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ProductLab.get(getActivity()).addProduct(mProduct);
+                ProductLab.get(getActivity()).addProduct(mProduct);
                 getActivity().finish();
             }
         });

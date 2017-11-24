@@ -18,6 +18,7 @@ public class Product {
         mId = UUID.randomUUID();
     }
 
+    public Product(UUID id){mId = id;}
 
     public UUID getId() {
         return mId;

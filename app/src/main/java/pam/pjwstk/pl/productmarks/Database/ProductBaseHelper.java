@@ -4,32 +4,54 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import static pam.pjwstk.pl.productmarks.Database.ProductDbSchema.*;
 import static pam.pjwstk.pl.productmarks.Database.ProductDbSchema.ProductTable.Cols;
-import static pam.pjwstk.pl.productmarks.Database.ProductDbSchema.ProductTable.NAME;
 
 /**
  * Created by Boberkowy on 04.11.2017.
  */
-
-public class BaseHelper extends SQLiteOpenHelper {
+//TODO: JAK JEDNO PADNIE TO WSZYSTKO PADINE - TAKI PROBLEM JUZ JEST
+    //ALE ROZWIĄZUJEMY TEN PROBLEM BO MIKROSERWISY :)
+public class ProductBaseHelper extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
     private static final String DATABASE_NAME = "productMarks.db";
 
 
-    public BaseHelper(Context context){
+    public ProductBaseHelper(Context context){
         super(context,DATABASE_NAME,null, VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Create table "+ NAME +
+
+        db.execSQL("CREATE TABLE " + ProductTable.NAME +
         "(" +
-                "id integer primary key autoincrement," +
-                    Cols.PRODUCT_NAME + "string, " +
-                    Cols.DESCRIPTION + " string, " +
-                    Cols.MARK + "real" +
+                "_id integer primary key autoincrement," +
+                    Cols.UUID + ", " +
+                    Cols.PRODUCT_NAME + ", " +
+                    Cols.DESCRIPTION + " , " +
+                    Cols.MARK  +
                     ")"
+        );
+
+        db.execSQL("CREATE TABLE " + ShopTable.NAME +
+        "(" +
+                "_id integer primary key autoincrement," +
+                ShopTable.Cols.UUID + ", " +
+                ShopTable.Cols.SHOP_NAME + ", " +
+                ShopTable.Cols.ADDRESS_ID +
+                ")"
+        );
+
+        db.execSQL("CREATE TABLE " + AddressTable.NAME +
+        "(" +
+                "_id integer primary key autoincrement," +
+                AddressTable.Cols.UUID + ", " +
+                AddressTable.Cols.STREET + ", " +
+                AddressTable.Cols.NUMBER + ", " +
+                AddressTable.Cols.CITY + ", " +
+                ")"
         );
     }
 
