@@ -1,4 +1,4 @@
-package pam.pjwstk.pl.productmarks;
+package pam.pjwstk.pl.productmarks.ProductActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,11 @@ import android.widget.TextView;
 
 import java.util.UUID;
 
+import pam.pjwstk.pl.productmarks.MapActivity.MapsActivity;
 import pam.pjwstk.pl.productmarks.Model.Product;
+import pam.pjwstk.pl.productmarks.R;
+
+import static android.view.View.*;
 
 
 public class ProductFragment extends Fragment{
@@ -23,6 +27,7 @@ public class ProductFragment extends Fragment{
     private TextView mName;
     private TextView mMark;
     private TextView mDesc;
+    private TextView mShop;
     private Button mEditButton;
     private Button mDeleteButton;
 
@@ -53,8 +58,10 @@ public class ProductFragment extends Fragment{
         getNameText(v);
         getMarkText(v);
         getDescText(v);
+        getShop(v);
         editButtonHandler(v);
         deleteButtonHandler(v);
+        findShopButtonHandler(v);
         return v;
     }
 
@@ -73,10 +80,15 @@ public class ProductFragment extends Fragment{
         mDesc.setText(mProduct.getDesc());
     }
 
+    private void getShop(View v){
+        mShop = (TextView) v.findViewById(R.id.shop_name);
+        mShop.setText(mProduct.getShop());
+    }
+
     private void editButtonHandler(View v){
         mEditButton = (Button) v.findViewById(R.id.edit_button);
 
-        mEditButton.setOnClickListener(new View.OnClickListener(){
+        mEditButton.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
 
@@ -91,10 +103,23 @@ public class ProductFragment extends Fragment{
     private void deleteButtonHandler(View v){
         mDeleteButton = (Button) v.findViewById(R.id.delete_button);
 
-        mDeleteButton.setOnClickListener(new View.OnClickListener() {
+        mDeleteButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 ProductLab.get(getActivity()).deleteProduct(mProduct);
+                getActivity().finish();
+            }
+        });
+    }
+
+    private void findShopButtonHandler(View v){
+        Button findShopButton  = (Button) v.findViewById(R.id.find_button);
+
+        findShopButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = MapsActivity.newIntent(getActivity(),mProduct.getShop());
+                startActivity(intent);
                 getActivity().finish();
             }
         });

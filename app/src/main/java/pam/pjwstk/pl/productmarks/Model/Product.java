@@ -13,6 +13,7 @@ public class Product {
     private String mName;
     private String mMark;
     private String mDesc;
+    private String mShop;
 
     public Product(){
         mId = UUID.randomUUID();
@@ -50,5 +51,13 @@ public class Product {
 
     public void setDesc(String desc) {
         mDesc = desc;
+    }
+
+    public String getShop() {
+        return mShop;
+    }
+
+    public void setShop(String shop) {
+        mShop = shop;
     }
 }

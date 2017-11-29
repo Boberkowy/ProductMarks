@@ -16,8 +16,10 @@
     <string name="marks_none">Brak oceny</string>
     <string name="edit_product_label">Edytuj produkt</string>
     <string name="edit_product_button">Edytuj</string>
+    <string name="which_shop_hint">Gdzie można to kupić?</string>
     <!--Array related to product marks-->
     <string-array name="marks_array">
+        <item></item>
         <item>Polecam</item>
         <item>Nie polecam</item>
     </string-array>
@@ -29,5 +31,7 @@
     <string name="product_desc">Opinia</string>
     <string name="edit_button">Edytuj</string>
     <string name="delete_button">Usuń</string>
+    <string name="find_button">Znajdź sklep</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

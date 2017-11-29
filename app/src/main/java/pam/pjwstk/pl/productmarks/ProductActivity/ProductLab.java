@@ -1,4 +1,4 @@
-package pam.pjwstk.pl.productmarks;
+package pam.pjwstk.pl.productmarks.ProductActivity;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,15 +11,9 @@ import java.util.UUID;
 
 import pam.pjwstk.pl.productmarks.Database.ProductBaseHelper;
 import pam.pjwstk.pl.productmarks.Database.ProductCursorWrapper;
-import pam.pjwstk.pl.productmarks.Database.ProductDbSchema;
 import pam.pjwstk.pl.productmarks.Database.ProductDbSchema.ProductTable;
-import pam.pjwstk.pl.productmarks.Model.Address;
 import pam.pjwstk.pl.productmarks.Model.Product;
-import pam.pjwstk.pl.productmarks.Model.Shop;
 
-/**
- * Created by Boberkowy on 10.11.2017.
- */
 
 public class ProductLab {
 
@@ -56,19 +50,6 @@ public class ProductLab {
         ContentValues values = getContentValues(product);
 
         mDatabase.delete(ProductTable.NAME,ProductTable.Cols.UUID + "= ?", new String[] {uuidString});
-    }
-
-    private ProductCursorWrapper queryProducts(String whereClause, String[] whereArgs){
-        Cursor cursor = mDatabase.query(
-                ProductTable.NAME,
-                null,
-                whereClause,
-                whereArgs,
-                null,
-                null,
-                null
-        );
-        return new ProductCursorWrapper(cursor);
     }
 
     public List<Product> getProducts(){
@@ -111,20 +92,24 @@ public class ProductLab {
         values.put(ProductTable.Cols.PRODUCT_NAME,product.getName());
         values.put(ProductTable.Cols.DESCRIPTION,product.getDesc());
         values.put(ProductTable.Cols.MARK,product.getMark());
-
-        return values;
-    }
-
-    private static ContentValues getShopContentValues(Shop shop){
-        ContentValues values = new ContentValues();
-
-        values.put(ProductDbSchema.ShopTable.Cols.UUID, shop.getUUID().toString());
-        values.put(ProductDbSchema.ShopTable.Cols.SHOP_NAME, shop.getName());
-        values.put(ProductDbSchema.ShopTable.Cols.ADDRESS_ID, shop.getAddressId());
+        values.put(ProductTable.Cols.SHOP,product.getShop());
 
         return values;
     }
 
 
+    private ProductCursorWrapper queryProducts(String whereClause, String[] whereArgs){
+        Cursor cursor = mDatabase.query(
+                ProductTable.NAME,
+                null,
+                whereClause,
+                whereArgs,
+                null,
+                null,
+                null
+        );
+        return new ProductCursorWrapper(cursor);
     }
-}
+
+    }
+

@@ -9,9 +9,6 @@ import pam.pjwstk.pl.productmarks.Model.Product;
 
 import static pam.pjwstk.pl.productmarks.Database.ProductDbSchema.ProductTable;
 
-/**
- * Created by Boberkowy on 22.11.2017.
- */
 
 public class ProductCursorWrapper extends CursorWrapper {
 
@@ -24,11 +21,13 @@ public class ProductCursorWrapper extends CursorWrapper {
         String name = getString(getColumnIndex(ProductTable.Cols.PRODUCT_NAME));
         String desc = getString(getColumnIndex(ProductTable.Cols.DESCRIPTION));
         String mark = getString(getColumnIndex(ProductTable.Cols.MARK));
+        String shop = getString(getColumnIndex(ProductTable.Cols.SHOP));
 
         Product product = new Product(UUID.fromString(uuidString));
         product.setName(name);
         product.setDesc(desc);
         product.setMark(mark);
+        product.setShop(shop);
 
         return product;
     }

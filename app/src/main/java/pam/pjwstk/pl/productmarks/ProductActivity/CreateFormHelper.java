@@ -1,4 +1,4 @@
-package pam.pjwstk.pl.productmarks;
+package pam.pjwstk.pl.productmarks.ProductActivity;
 
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import pam.pjwstk.pl.productmarks.Model.Product;
+import pam.pjwstk.pl.productmarks.R;
 
 /**
  * Created by Boberkowy on 22.11.2017.
@@ -65,7 +66,7 @@ public abstract class CreateFormHelper   extends Fragment {
         });
     }
 
-    public void createMarkSpinner(View v,final Product mProduct) {
+    public  void createMarkSpinner(View v,final Product mProduct) {
         final Spinner spinner = (Spinner) v.findViewById(R.id.marks_spinner);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext() ,R.array.marks_array, android.R.layout.simple_spinner_item);

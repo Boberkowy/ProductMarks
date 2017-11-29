@@ -17,11 +17,16 @@
         android:hint="@string/add_product_hint"/>
 
     <EditText
+        android:id="@+id/shop_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/which_shop_hint"/>
+
+    <EditText
         android:id="@+id/product_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/add_product_description"/>
-
     <Spinner
         android:id="@+id/marks_spinner"
         android:layout_width="match_parent"

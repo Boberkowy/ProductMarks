@@ -1,4 +1,4 @@
-package pam.pjwstk.pl.productmarks;
+package pam.pjwstk.pl.productmarks.ProductActivity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import java.util.UUID;
 
 import pam.pjwstk.pl.productmarks.Model.Product;
+import pam.pjwstk.pl.productmarks.R;
 
 public class EditProductFragment extends Fragment {
 
@@ -24,6 +25,7 @@ public class EditProductFragment extends Fragment {
     private Product mProduct;
     private EditText mTitleField;
     private EditText mDesc;
+    private EditText mShop;
     private Button mEditButton;
 
     public static EditProductFragment newInstance (UUID productId){
@@ -48,6 +50,7 @@ public class EditProductFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_edit_product, container, false);
 
         createTitleField(v);
+        createShopField(v);
         createDescField(v);
         createMarkSpinner(v);
         createEditButton(v);
@@ -77,6 +80,27 @@ public class EditProductFragment extends Fragment {
         });
     }
 
+    private void createShopField(View v){
+        mShop = (EditText) v.findViewById(R.id.shop_name);
+        mShop.setText(mProduct.getShop());
+
+        mShop.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mProduct.setShop(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // nothing
+            }
+        });
+    }
     private void createDescField(View v) {
 
         mDesc = (EditText) v.findViewById(R.id.product_desc);

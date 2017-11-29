@@ -1,4 +1,4 @@
-package pam.pjwstk.pl.productmarks;
+package pam.pjwstk.pl.productmarks.ProductActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import pam.pjwstk.pl.productmarks.Model.Product;
+import pam.pjwstk.pl.productmarks.R;
 
 
 public class ProductListFragment extends Fragment {
